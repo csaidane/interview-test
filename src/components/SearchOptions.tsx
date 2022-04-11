@@ -1,15 +1,20 @@
 import React from 'react';
 import { StyledOptions } from './styles/SearchOptions.styled';
-import { TextField } from '@mui/material';
+import { Button, Paper, InputAdornment, TextField } from '@mui/material';
 
 
 export default function SearchOptions() {
   return (
     <StyledOptions>
-        <button type="button">Retrieve Users</button>
-        min: <input name="minAge" value="0" type="number" />
-        max: <input name="maxAge" value="100" type="number" />
-        <TextField id="outlined-basic" label="Outlined" variant="outlined" />
+        <TextField id="outlined-basic" variant="outlined" 
+        InputProps={{
+          startAdornment: <InputAdornment position="start">min</InputAdornment>}}
+        />
+        <TextField id="outlined-basic" variant="outlined" 
+        InputProps={{
+          startAdornment: <InputAdornment position="start">max</InputAdornment>}}
+        />
+        <Button variant="contained">Retrieve Users</Button>
     </StyledOptions>
   );
 }
