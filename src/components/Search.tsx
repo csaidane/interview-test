@@ -1,15 +1,22 @@
 import React from 'react';
-import SearchOptions from './SearchOptions';
-import { StyledSearch } from './styles/Search.styled';
+import { Paper, Stack, TextField, InputAdornment, Divider} from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
 
 
-export default function Search() {
+
+const Search = () => {
   return (
-      <StyledSearch>
-      <div>
-      <h2>Users</h2>
-      </div>
-      <SearchOptions/>
-      </StyledSearch>
+    <Paper>
+      <Stack spacing={3} p={3}>
+      <TextField id="outlined-basic" variant="outlined" placeholder="Search Users"
+        InputProps={{startAdornment: <InputAdornment position="start">
+        <SearchIcon/>
+        </InputAdornment>}} InputLabelProps={{shrink: false}}
+      />
+      <Divider/>
+      </Stack>
+    </Paper>
   );
 }
+
+export default Search;
