@@ -3,8 +3,9 @@ import Navbar from './components/Navbar';
 import { StyledApp } from './components/styles/App.styled'; 
 import SearchOptions from './components/SearchOptions';
 import Search from './components/Search';
-import {Grid, Hidden } from '@mui/material';
+import {Grid } from '@mui/material';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const API_URL = 'http://localhost:8099'
 interface User {
   age: number;
@@ -29,10 +30,10 @@ function App() {
           <h2>Users</h2>
         </Grid>
         <Grid item xs={3}>
-          <SearchOptions setUsers={setUsers} users={users}/>
+          <SearchOptions setUsers={setUsers}/>
         </Grid>
         <Grid item xs={6}>
-          <Search/>
+          <Search setUsers={setUsers} users={users}/>
         </Grid>
         <Grid item xs={8}>
         </Grid>

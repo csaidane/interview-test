@@ -12,11 +12,10 @@ interface User {
 };
 
 interface SearchOptionProps {
-  users: User[];
   setUsers: Dispatch<SetStateAction<User[]>>;
 }
 
-const SearchOptions: React.FC<SearchOptionProps> = ({users, setUsers}:SearchOptionProps) => {
+const SearchOptions: React.FC<SearchOptionProps> = ({setUsers}:SearchOptionProps) => {
   const [allUsers, setAllUsers] = useState<User[]>([]);
   const [min, setMin] = useState<any>(0);
   const [max, setMax] = useState<any>(100);
@@ -32,11 +31,13 @@ const SearchOptions: React.FC<SearchOptionProps> = ({users, setUsers}:SearchOpti
   }, []);
 
   const fetchUsers = () => {
-    if(!isNaN(parseInt(min)) && !isNaN(parseInt(max))){
+    const validMin:boolean = !isNaN(parseInt(min));
+    const validMax:boolean = !isNaN(parseInt(max));
+    if(validMin && validMax){
       setUsers(allUsers.filter(user =>user.age>min && user.age<max))
-    } else if(!isNaN(parseInt(min))){
+    } else if(validMin){
       setUsers(allUsers.filter(user => user.age>min))
-    } else if(!isNaN(parseInt(max))){
+    } else if(validMax){
       setUsers(allUsers.filter(user =>user.age<max))
     } else{
       setUsers(allUsers)
