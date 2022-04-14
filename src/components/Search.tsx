@@ -1,5 +1,5 @@
-import React, { Dispatch, SetStateAction, useState } from 'react';
-import { Paper, Stack, TextField, InputAdornment, Divider, Box, Checkbox, Typography } from '@mui/material';
+import React, { Dispatch, SetStateAction } from 'react';
+import { Paper, Stack, TextField, InputAdornment, Divider, Box, Icon } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { ReactComponent as SortArrows } from '../public/sort-arrows.svg';
 import UserListItem from './UserListItem';
@@ -39,13 +39,13 @@ const Search = ({users, setUsers}:SearchProps) => {
           gridTemplateAreas: `". name . . . . age"`,
           }}
         >
-          <Box sx={{ gridArea: 'name', display: 'flex' }}>
+          <Box sx={{ gridArea: 'name', display: 'flex', flexDirection:'row', alignItems:"center" }}>
             <h3>Name</h3>
-            <SortArrows/>
+            <SortArrows style={{paddingLeft:"3px",height:'8px'}}/>
           </Box>
-          <Box sx={{gridArea: 'age', display: 'flex' }}>
+          <Box sx={{ gridArea: 'age', display: 'flex', flexDirection:'row', alignItems:"center" }}>
             <h3>Age</h3>
-            <SortArrows/>
+            <SortArrows style={{paddingLeft:"3px",height:'8px'}}/>
           </Box>
         </Box>
         {users.map((user)=><UserListItem user={user}/>)}

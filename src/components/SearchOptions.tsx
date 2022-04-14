@@ -33,14 +33,32 @@ const SearchOptions: React.FC<SearchOptionProps> = ({setUsers}:SearchOptionProps
   const fetchUsers = () => {
     const validMin:boolean = !isNaN(parseInt(min));
     const validMax:boolean = !isNaN(parseInt(max));
+    const sortUsers = (a:User,b:User) =>{
+      const nameA = a.name.firstName.toLowerCase() + a.name.lastName.toLowerCase();
+      const nameB = b.name.firstName.toLowerCase() + b.name.lastName.toLowerCase();
+      if(nameA.localeCompare(nameB) > 0){
+        return 1
+      } else if(nameA.localeCompare(nameB) < 0){
+        return -1
+      } else{
+        return a.age > b.age ? -1 : 1
+      }
+    }
     if(validMin && validMax){
-      setUsers(allUsers.filter(user =>user.age>min && user.age<max))
+      const filteredUsers = allUsers.filter(user =>user.age>min && user.age<max);
+      const orderedUsers = filteredUsers.sort((a,b)=>sortUsers(a,b));
+      setUsers(orderedUsers)
     } else if(validMin){
-      setUsers(allUsers.filter(user => user.age>min))
+      const filteredUsers = allUsers.filter(user => user.age>min);
+      const orderedUsers = filteredUsers.sort((a,b)=>sortUsers(a,b));
+      setUsers(orderedUsers)
     } else if(validMax){
-      setUsers(allUsers.filter(user =>user.age<max))
+      const filteredUsers = allUsers.filter(user =>user.age<max);
+      const orderedUsers = filteredUsers.sort((a,b)=>sortUsers(a,b));
+      setUsers(orderedUsers)
     } else{
-      setUsers(allUsers)
+      const orderedUsers = allUsers.sort((a,b)=>sortUsers(a,b));
+      setUsers(orderedUsers)
     }
   }
 
@@ -51,7 +69,7 @@ const SearchOptions: React.FC<SearchOptionProps> = ({setUsers}:SearchOptionProps
           InputProps={{startAdornment: <InputAdornment position="start">min</InputAdornment>}}/>
           <TextField id="outlined-basic" variant="outlined" value={max} onChange={(e) => setMax(e.target.value)}
           InputProps={{startAdornment: <InputAdornment position="start">max</InputAdornment>}}/>
-          <Button onClick={()=>fetchUsers()} variant="contained" style={{maxWidth: "40%",backgroundColor: "#4caf50",borderRadius: 20}}>Retrieve Users</Button>
+          <Button onClick={()=>fetchUsers()} variant="contained" style={{}}>Retrieve Users</Button>
         </Stack>
       </Paper>
   );

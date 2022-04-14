@@ -22,20 +22,19 @@ function App() {
 
   return (
     <StyledApp>  
-      <Grid container spacing={4} justifyContent="center">
-        <Grid item xs={12}>
-          <Navbar/>
-        </Grid>
-        <Grid item xs={12}>
-          <h2>Users</h2>
+      <Navbar/>
+      <Grid container spacing={4} justifyContent="center" sx={{paddingBottom:"12px"}}>
+        <Grid container item xs={12}>
+          <Grid item xs={1.5}></Grid>
+          <Grid item xs={6}>
+          <h2 style={{color:'#131221'}}>Users</h2>
+          </Grid>
         </Grid>
         <Grid item xs={3}>
           <SearchOptions setUsers={setUsers}/>
         </Grid>
         <Grid item xs={6}>
           <Search setUsers={setUsers} users={users}/>
-        </Grid>
-        <Grid item xs={8}>
         </Grid>
       </Grid>
     </StyledApp>

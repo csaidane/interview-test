@@ -7,7 +7,7 @@ export default function Navbar() {
   return (
     <StyledNavbar>
       <Logo/>
-      <h1>Planned test</h1>
+      <h3>Planned test</h3>
     </StyledNavbar>
   );
 }
