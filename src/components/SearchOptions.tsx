@@ -1,19 +1,8 @@
-import React, { Dispatch, SetStateAction, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Paper, InputAdornment, TextField, Stack } from '@mui/material';
 import axios from "axios";
+import {User,SearchOptionProps} from "../types/User"
 
-interface User {
-  age: number;
-  country: string;
-  email: string;
-  name:{firstName:string;
-    lastName:string;
-  }
-};
-
-interface SearchOptionProps {
-  setUsers: Dispatch<SetStateAction<User[]>>;
-}
 
 const SearchOptions: React.FC<SearchOptionProps> = ({setUsers}:SearchOptionProps) => {
   const [allUsers, setAllUsers] = useState<User[]>([]);
@@ -69,7 +58,7 @@ const SearchOptions: React.FC<SearchOptionProps> = ({setUsers}:SearchOptionProps
           InputProps={{startAdornment: <InputAdornment position="start">min</InputAdornment>}}/>
           <TextField id="outlined-basic" variant="outlined" value={max} onChange={(e) => setMax(e.target.value)}
           InputProps={{startAdornment: <InputAdornment position="start">max</InputAdornment>}}/>
-          <Button onClick={()=>fetchUsers()} variant="contained" style={{}}>Retrieve Users</Button>
+          <Button onClick={()=>fetchUsers()} variant="contained" style={{maxWidth: "45%",backgroundColor: "#3cb371",borderRadius: 20, textTransform:'none', marginBottom:'16px', display:"inline-block"}}>Retrieve Users</Button>
         </Stack>
       </Paper>
   );

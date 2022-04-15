@@ -1,22 +1,10 @@
-import React, { Dispatch, SetStateAction } from 'react';
-import { Paper, Stack, TextField, InputAdornment, Divider, Box, Icon } from '@mui/material';
+import React from 'react';
+import { Paper, Stack, TextField, InputAdornment, Divider, Box, List } from '@mui/material';
+
 import SearchIcon from '@mui/icons-material/Search';
 import { ReactComponent as SortArrows } from '../public/sort-arrows.svg';
 import UserListItem from './UserListItem';
-
-interface User {
-  age: number;
-  country: string;
-  email: string;
-  name:{firstName:string;
-    lastName:string;
-  }
-};
-
-interface SearchProps {
-  users: User[];
-  setUsers: Dispatch<SetStateAction<User[]>>;
-}
+import {SearchProps} from "../types/User"
 
 
 const Search = ({users, setUsers}:SearchProps) => {
@@ -38,6 +26,7 @@ const Search = ({users, setUsers}:SearchProps) => {
           gridTemplateRows: 'auto',
           gridTemplateAreas: `". name . . . . age"`,
           }}
+          style={{margin:0}}
         >
           <Box sx={{ gridArea: 'name', display: 'flex', flexDirection:'row', alignItems:"center" }}>
             <h3>Name</h3>
@@ -48,7 +37,9 @@ const Search = ({users, setUsers}:SearchProps) => {
             <SortArrows style={{paddingLeft:"3px",height:'8px'}}/>
           </Box>
         </Box>
+        <List sx={{maxHeight:330,overflow: 'auto'}} style={{margin:0, padding:0}}>
         {users.map((user)=><UserListItem user={user}/>)}
+        </List>
       </Stack>
     </Paper>
   );

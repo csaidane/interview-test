@@ -1,5 +1,5 @@
 import React from 'react';
-import { Divider, Box, Checkbox, Typography } from '@mui/material';
+import { Divider, Box, Checkbox, Typography  } from '@mui/material';
 
 interface User {
     age: number;
